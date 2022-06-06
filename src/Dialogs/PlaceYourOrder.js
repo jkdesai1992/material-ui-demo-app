@@ -164,7 +164,7 @@ const PlaceYourOrder = ({ isOpen, handleClose, handleAddToCart, fillData }) => {
               marginTop: "25px",
             }}
           >
-            ADD TO CART
+            {fillData.pokemonType ? "UPDATE" : " ADD TO CART"}
           </Button>
         </Box>
       </DialogContent>

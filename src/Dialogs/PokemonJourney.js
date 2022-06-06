@@ -107,12 +107,22 @@ const PokemonJourney = () => {
   };
 
   const handleAddToCart = (val) => {
-    setFormData((formData) => ({
-      ...formData,
-      packList: [...formData.packList, val],
-    }));
+    const cloneData = [...formData.packList];
+    const index = cloneData.findIndex((p) => p.pokemonType === val.pokemonType);
+    if (index !== -1) {
+      cloneData[index] = val;
+      setFormData((formData) => ({
+        ...formData,
+        packList: cloneData,
+      }));
+      setData({});
+    } else {
+      setFormData((formData) => ({
+        ...formData,
+        packList: [...formData.packList, val],
+      }));
+    }
     setOpen(false);
-    setData({});
   };
 
   const getActivePokemonDetails = useCallback(() => {
